@@ -1,0 +1,6 @@
+package-lock.json
+node_modules/
+Demo/
+
+# OS generated files
+.DS_Store
