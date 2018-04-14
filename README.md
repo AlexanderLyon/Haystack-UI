@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/AlexanderLyon/Haystack-UI/Development/assets/header.png" alt="Haystack UI"/>
+  <img src="https://raw.githubusercontent.com/AlexanderLyon/Haystack-UI/master/assets/header.png" alt="Haystack UI"/>
 </p>
 
 ## Overview:
