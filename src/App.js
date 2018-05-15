@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Suggestions } from './Suggestions';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 
@@ -43,20 +44,24 @@ export class HaystackUI extends React.Component {
         if( this.state.currentFocus < (this.suggestionList.length - 1) || this.state.currentFocus == -1 ){
           newFocus = this.state.currentFocus + 1;
           const elements = document.querySelectorAll('#Haystack-UI li');
-          for(let i=0; i<elements.length; i++){
-            elements[i].classList.remove('active');
+          if (elements.length) {
+            for(let i=0; i<elements.length; i++){
+              elements[i].classList.remove('active');
+            }
+            document.getElementById('s' + newFocus).classList.add('active');
+            document.getElementById('searchBar').value = this.suggestionList[newFocus];
           }
-          document.getElementById('s' + newFocus).classList.add('active');
-          document.getElementById('searchBar').value = this.suggestionList[newFocus];
         }
         else if( this.state.currentFocus == (this.suggestionList.length - 1) ){
           newFocus = 0;
           const elements = document.querySelectorAll('#Haystack-UI li');
-          for(let i=0; i<elements.length; i++){
-            elements[i].classList.remove('active');
+          if (elements.length) {
+            for(let i=0; i<elements.length; i++){
+              elements[i].classList.remove('active');
+            }
+            document.getElementById('s' + newFocus).classList.add('active');
+            document.getElementById('searchBar').value = this.suggestionList[newFocus];
           }
-          document.getElementById('s' + newFocus).classList.add('active');
-          document.getElementById('searchBar').value = this.suggestionList[newFocus];
         }
       }
       else if(e.keyCode === 38){
@@ -66,20 +71,24 @@ export class HaystackUI extends React.Component {
         if( (this.state.currentFocus) > 0 ){
           newFocus = this.state.currentFocus - 1;
           const elements = document.querySelectorAll('#Haystack-UI li');
-          for(let i=0; i<elements.length; i++){
-            elements[i].classList.remove('active');
+          if (elements.length) {
+            for(let i=0; i<elements.length; i++){
+              elements[i].classList.remove('active');
+            }
+            document.getElementById('s' + newFocus).classList.add('active');
+            document.getElementById('searchBar').value = this.suggestionList[newFocus];
           }
-          document.getElementById('s' + newFocus).classList.add('active');
-          document.getElementById('searchBar').value = this.suggestionList[newFocus];
         }
         else if( this.state.currentFocus == 0 || this.state.currentFocus == -1 ){
           newFocus = this.suggestionList.length - 1;
           const elements = document.querySelectorAll('#Haystack-UI li');
-          for(let i=0; i<elements.length; i++){
-            elements[i].classList.remove('active');
+          if (elements.length) {
+            for(let i=0; i<elements.length; i++){
+              elements[i].classList.remove('active');
+            }
+            document.getElementById('s' + newFocus).classList.add('active');
+            document.getElementById('searchBar').value = this.suggestionList[newFocus];
           }
-          document.getElementById('s' + newFocus).classList.add('active');
-          document.getElementById('searchBar').value = this.suggestionList[newFocus];
         }
       }
       this.setState({ currentFocus: newFocus });
@@ -92,7 +101,7 @@ export class HaystackUI extends React.Component {
         this.setState({ userQuery: e.target.value, showSuggestions: true, showClear: true, currentFocus: -1 });
       }
     } else {
-      this.setState({ userQuery: "", showSuggestions: false, showClear: false });
+      this.setState({ userQuery: "", showSuggestions: false, currentFocus: -1, showClear: false });
       this.suggestionList = null;
     }
   }
@@ -167,41 +176,4 @@ export class HaystackUI extends React.Component {
       </div>
     );
   }
-}
-
-
-
-
-class Suggestions extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      mounted: false
-    };
-  }
-
-  componentDidMount() {
-    this.setState({ mounted: true });
-  }
-
-  render() {
-    let suggestionBox;
-
-    if( this.props.show && this.state.mounted ){
-      suggestionBox = (
-        <div id="suggestions">
-          <ul id="suggestion-list"> {this.props.getSuggestions} </ul>
-        </div>
-      );
-    }
-
-    return (
-      <ReactCSSTransitionGroup transitionName="slideDown"
-        transitionEnterTimeout={200}
-        transitionLeaveTimeout={200} >
-        {suggestionBox}
-      </ReactCSSTransitionGroup>
-    );
-  }
-
 }

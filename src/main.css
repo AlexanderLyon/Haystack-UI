@@ -64,6 +64,7 @@
 #Haystack-UI #suggestions #suggestion-list li {
   padding-top: 7px;
   white-space: nowrap;
+  text-overflow: ellipsis;
   -webkit-transition: 0.4s;
   -moz-transition: 0.4s;
   -o-transition: 0.4s;
