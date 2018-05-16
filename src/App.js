@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Suggestions } from './Suggestions';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-
 
 export class HaystackUI extends React.Component {
   constructor(props) {

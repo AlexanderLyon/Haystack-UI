@@ -25,7 +25,7 @@ const haystackApp = new HaystackUI( options ).init();
 
 ## Options:
 
-`theme` *string* -- Color scheme ("light" or "dark" with more being added soon)
+`theme` *string* -- Color scheme ("light", "dark", or "ghost")
 
 `placeholder` *string* -- Input placeholder text
 

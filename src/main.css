@@ -108,7 +108,7 @@
 /***** Light *****/
 #Haystack-UI.theme-light input[type="search"],
 #Haystack-UI.theme-light #suggestions {
-  background-color: rgba(234, 234, 234, 0.7);
+  background-color: rgba(247, 247, 247, 0.75);
 }
 #Haystack-UI.theme-light #clear {
   color: black;
@@ -117,7 +117,7 @@
   color: grey;
 }
 #Haystack-UI.theme-light #suggestions #suggestion-list li {
-  color: #2d2d2d;
+  color: #757576;
 }
 #Haystack-UI.theme-light #suggestions #suggestion-list li:hover,
 #Haystack-UI.theme-light #suggestions #suggestion-list li.active {
@@ -147,3 +147,29 @@
   outline: none;
 }
 #Haystack-UI.theme-dark #suggestions h4 { color: grey; }
+
+
+/***** Ghost *****/
+#Haystack-UI.theme-ghost input[type="search"],
+#Haystack-UI.theme-ghost #suggestions {
+  background-color: transparent;
+  border: 2px solid black;
+}
+#Haystack-UI.theme-ghost #suggestions {
+  border-top: none;
+}
+#Haystack-UI.theme-ghost #clear {
+  color: black;
+}
+#Haystack-UI.theme-ghost #clear:hover {
+  color: grey;
+}
+#Haystack-UI.theme-ghost #suggestions #suggestion-list li {
+  color: #757576;
+}
+#Haystack-UI.theme-ghost #suggestions #suggestion-list li:hover,
+#Haystack-UI.theme-ghost #suggestions #suggestion-list li.active {
+  color: black;
+  outline: none;
+}
+#Haystack-UI.theme-ghost #suggestions h4 { color: grey; }
