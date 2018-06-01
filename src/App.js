@@ -120,9 +120,12 @@ export class HaystackUI extends React.Component {
     const results = this.haystack.search(this.state.userQuery, this.settings.source, this.settings.suggestionLimit);
     if( results ){
       const resultList = results.map( (value, i) =>
+      <div>
+        <hr/>
         <li key={'s'+i} id={'s'+i} onClick={this.suggestionClick}>
           {value}
         </li>
+      </div>
       );
       this.suggestionList = results;
       return resultList;
@@ -156,7 +159,7 @@ export class HaystackUI extends React.Component {
 
   render() {
     return (
-      <div id="Haystack-UI" className={'theme-' + this.settings.theme} onFocus={this.handleKeyUp} onBlur={this.handleBlur}>
+      <div id="Haystack-UI" className={'theme-' + this.settings.theme.toLowerCase()} onFocus={this.handleKeyUp} onBlur={this.handleBlur}>
         <form method="GET" action={this.settings.submitLocation} onSubmit={this.submitSearch}>
           <input id="searchBar" type="search" autoComplete="off" name="query"
             placeholder={this.settings.placeholder}

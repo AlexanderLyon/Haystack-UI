@@ -55,14 +55,17 @@
   height: auto;
   text-align: left;
 }
-#Haystack-UI #suggestions #suggestion-list {
+#Haystack-UI #suggestion-list {
   list-style: none;
-  margin: 3px 0px 10px 0px;
-  padding-left: 10px;
+  margin: 0px;
+  padding: 0px;
   overflow-x: hidden;
 }
-#Haystack-UI #suggestions #suggestion-list li {
-  padding-top: 7px;
+#Haystack-UI #suggestion-list hr {
+  margin: 0px;
+}
+#Haystack-UI #suggestion-list li {
+  padding: 7px 0px 7px 10px;
   white-space: nowrap;
   text-overflow: ellipsis;
   -webkit-transition: 0.4s;
@@ -71,13 +74,13 @@
   transition: 0.4s;
   position: relative;
 }
-#Haystack-UI #suggestions #suggestion-list li:hover {
+#Haystack-UI #suggestion-list li:hover {
   cursor: pointer;
   font-size: 1.1em;
 }
 #Haystack-UI #suggestions h4 {
   text-align: center;
-  margin-right: 10px;
+  margin: 14px;
 }
 
 
@@ -116,11 +119,14 @@
 #Haystack-UI.theme-light #clear:hover {
   color: grey;
 }
-#Haystack-UI.theme-light #suggestions #suggestion-list li {
+#Haystack-UI.theme-light #suggestion-list hr {
+  border-color: #dadada;
+}
+#Haystack-UI.theme-light #suggestion-list li {
   color: #757576;
 }
-#Haystack-UI.theme-light #suggestions #suggestion-list li:hover,
-#Haystack-UI.theme-light #suggestions #suggestion-list li.active {
+#Haystack-UI.theme-light #suggestion-list li:hover,
+#Haystack-UI.theme-light #suggestion-list li.active {
   color: black;
   outline: none;
 }
@@ -138,11 +144,14 @@
 #Haystack-UI.theme-dark #clear:hover {
   color: black;
 }
-#Haystack-UI.theme-dark #suggestions #suggestion-list li {
+#Haystack-UI.theme-dark #suggestion-list hr {
+  border-color: #b5b5b5;
+}
+#Haystack-UI.theme-dark #suggestion-list li {
   color: grey;
 }
-#Haystack-UI.theme-dark #suggestions #suggestion-list li:hover,
-#Haystack-UI.theme-dark #suggestions #suggestion-list li.active {
+#Haystack-UI.theme-dark #suggestion-list li:hover,
+#Haystack-UI.theme-dark #suggestion-list li.active {
   color: black;
   outline: none;
 }
@@ -164,11 +173,11 @@
 #Haystack-UI.theme-ghost #clear:hover {
   color: grey;
 }
-#Haystack-UI.theme-ghost #suggestions #suggestion-list li {
+#Haystack-UI.theme-ghost #suggestion-list li {
   color: #757576;
 }
-#Haystack-UI.theme-ghost #suggestions #suggestion-list li:hover,
-#Haystack-UI.theme-ghost #suggestions #suggestion-list li.active {
+#Haystack-UI.theme-ghost #suggestion-list li:hover,
+#Haystack-UI.theme-ghost #suggestion-list li.active {
   color: black;
   outline: none;
 }
