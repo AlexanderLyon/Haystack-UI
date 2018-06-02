@@ -119,11 +119,9 @@
 #Haystack-UI.theme-light #clear:hover {
   color: grey;
 }
-#Haystack-UI.theme-light #suggestion-list hr {
-  border-color: #dadada;
-}
 #Haystack-UI.theme-light #suggestion-list li {
   color: #757576;
+  border-top: 1px solid #dadada;
 }
 #Haystack-UI.theme-light #suggestion-list li:hover,
 #Haystack-UI.theme-light #suggestion-list li.active {
@@ -144,11 +142,9 @@
 #Haystack-UI.theme-dark #clear:hover {
   color: black;
 }
-#Haystack-UI.theme-dark #suggestion-list hr {
-  border-color: #b5b5b5;
-}
 #Haystack-UI.theme-dark #suggestion-list li {
   color: grey;
+  border-top: 1px solid #b5b5b5;
 }
 #Haystack-UI.theme-dark #suggestion-list li:hover,
 #Haystack-UI.theme-dark #suggestion-list li.active {

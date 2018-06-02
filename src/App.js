@@ -120,12 +120,9 @@ export class HaystackUI extends React.Component {
     const results = this.haystack.search(this.state.userQuery, this.settings.source, this.settings.suggestionLimit);
     if( results ){
       const resultList = results.map( (value, i) =>
-      <div>
-        <hr/>
         <li key={'s'+i} id={'s'+i} onClick={this.suggestionClick}>
           {value}
         </li>
-      </div>
       );
       this.suggestionList = results;
       return resultList;
