@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Haystack from 'haystack-search';
 import { Suggestions } from './Suggestions';
 
 export class HaystackUI extends React.Component {
