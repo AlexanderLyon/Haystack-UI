@@ -5,7 +5,7 @@ import { CSSTransitionGroup } from 'react-transition-group';
 export const Suggestions = (props) => {
   let boxContent;
 
-  if( props.show ){
+  if (props.show) {
     boxContent = (
       <div id="suggestions">
         <ul id="suggestion-list"> {props.getSuggestions} </ul>

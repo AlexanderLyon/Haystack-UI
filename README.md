@@ -30,7 +30,7 @@ const haystackApp = new HaystackUI( options ).init();
 
 `suggestionLimit` *number* -- Maximum number of suggestions shown in drop-down
 
-`submitLocation` *string* -- URL of the file that will process GET method. Your search string will be received as "query"
+`submitLocation` *string* -- URL of the file that will process GET method. Your search string will be received as "q"
 
 `source` *array* -- Pool of data to pull suggestions from
 

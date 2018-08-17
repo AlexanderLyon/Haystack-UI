@@ -33,14 +33,14 @@ export class HaystackUI extends React.Component {
 
   handleKeyDown(e) {
     // Listen for arrow key press
-    if( this.suggestionList ){
+    if (this.suggestionList) {
       let newFocus;
 
-      if(e.keyCode === 40){
+      if (e.keyCode === 40) {
         //Down pressed
         e.preventDefault();
 
-        if( this.state.currentFocus < (this.suggestionList.length - 1) || this.state.currentFocus == -1 ){
+        if (this.state.currentFocus < (this.suggestionList.length - 1) || this.state.currentFocus == -1) {
           newFocus = this.state.currentFocus + 1;
           const elements = document.querySelectorAll('#Haystack-UI li');
           if (elements.length) {
@@ -51,7 +51,7 @@ export class HaystackUI extends React.Component {
             document.getElementById('searchBar').value = this.suggestionList[newFocus];
           }
         }
-        else if( this.state.currentFocus == (this.suggestionList.length - 1) ){
+        else if (this.state.currentFocus == (this.suggestionList.length - 1)) {
           newFocus = 0;
           const elements = document.querySelectorAll('#Haystack-UI li');
           if (elements.length) {
@@ -63,11 +63,11 @@ export class HaystackUI extends React.Component {
           }
         }
       }
-      else if(e.keyCode === 38){
+      else if (e.keyCode === 38) {
         //Up pressed
         e.preventDefault();
 
-        if( (this.state.currentFocus) > 0 ){
+        if ((this.state.currentFocus) > 0) {
           newFocus = this.state.currentFocus - 1;
           const elements = document.querySelectorAll('#Haystack-UI li');
           if (elements.length) {
@@ -78,7 +78,7 @@ export class HaystackUI extends React.Component {
             document.getElementById('searchBar').value = this.suggestionList[newFocus];
           }
         }
-        else if( this.state.currentFocus == 0 || this.state.currentFocus == -1 ){
+        else if (this.state.currentFocus == 0 || this.state.currentFocus == -1) {
           newFocus = this.suggestionList.length - 1;
           const elements = document.querySelectorAll('#Haystack-UI li');
           if (elements.length) {
@@ -95,8 +95,8 @@ export class HaystackUI extends React.Component {
   }
 
   handleKeyUp(e) {
-    if( e.target.value ){
-      if( e.keyCode !== 38 && e.keyCode !== 40 ){
+    if (e.target.value) {
+      if (e.keyCode !== 38 && e.keyCode !== 40) {
         this.setState({ userQuery: e.target.value, showSuggestions: true, showClear: true, currentFocus: -1 });
       }
     } else {
@@ -118,8 +118,13 @@ export class HaystackUI extends React.Component {
 
   getSuggestions() {
     // Search for similar words using Haystack
-    const results = this.haystack.search(this.state.userQuery, this.settings.source, this.settings.suggestionLimit);
-    if( results ){
+    let results;
+
+    if (this.settings.source) {
+      results = this.haystack.search(this.state.userQuery, this.settings.source, this.settings.suggestionLimit);
+    }
+
+    if (results) {
       const resultList = results.map( (value, i) =>
         <li key={'s'+i} id={'s'+i} onClick={this.suggestionClick}>
           {value}
@@ -141,10 +146,10 @@ export class HaystackUI extends React.Component {
   }
 
   submitSearch(e) {
-    if( e ){
+    if (e) {
       e.preventDefault();
     }
-    if( document.getElementById('searchBar').value ){
+    if (document.getElementById('searchBar').value) {
       document.querySelector('#Haystack-UI form').submit();
     }
   }
@@ -159,7 +164,7 @@ export class HaystackUI extends React.Component {
     return (
       <div id="Haystack-UI" className={'theme-' + this.settings.theme.toLowerCase()} onFocus={this.handleKeyUp} onBlur={this.handleBlur}>
         <form method="GET" action={this.settings.submitLocation} onSubmit={this.submitSearch}>
-          <input id="searchBar" type="search" autoComplete="off" name="query"
+          <input id="searchBar" type="search" autoComplete="off" name="q"
             placeholder={this.settings.placeholder}
             className={this.state.showSuggestions ? "expanded" : ""}
             onKeyDown={this.handleKeyDown}
