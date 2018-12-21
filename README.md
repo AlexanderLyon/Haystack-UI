@@ -48,4 +48,5 @@ const haystackApp = new HaystackUI( options ).init();
 
 ## License
 
-MIT
+[MIT](https://github.com/AlexanderLyon/Haystack-UI/blob/master/LICENSE "MIT License")
+
