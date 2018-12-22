@@ -179,6 +179,7 @@
 #Haystack-UI.theme-ghost #suggestions {
   border-top: none;
 }
+#Haystack-UI.theme-ghost #prediction-text { left: 2px; }
 #Haystack-UI.theme-ghost #clear {
   color: black;
 }

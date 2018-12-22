@@ -28,9 +28,11 @@ const haystackApp = new HaystackUI( options ).init();
 
 `showSuggestions` *boolean* -- Whether or not to show suggestion drop-down
 
+`inlineSuggestions` *boolean* -- Displays an autocompleted suggestion on the same line as input
+
 `suggestionLimit` *number* -- Maximum number of suggestions shown in drop-down
 
-`submitLocation` *string* -- URL of the file that will process GET method. Your search string will be received as "q"
+`submitLocation` *string* -- URL of the file that will process GET method. Your search string will be received as "query"
 
 `source` *array* -- Pool of data to pull suggestions from
 

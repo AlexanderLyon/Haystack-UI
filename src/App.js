@@ -34,12 +34,22 @@ export class HaystackUI extends React.Component {
   }
 
   handleKeyDown(e) {
-    // Listen for arrow key press
+    // Listens mainly for arrow key presses
+
+    if (this.settings.inlineSuggestions && this.state.prediction) {
+      // Tab pressed
+      if (e.keyCode === 9) {
+        e.preventDefault();
+        document.getElementById('searchBar').value = this.state.prediction;
+        this.setState({ prediction: null, showSuggestions: false });
+      }
+    }
+
     if (this.suggestionList) {
       let newFocus;
 
       if (e.keyCode === 40) {
-        //Down pressed
+        // Down pressed
         e.preventDefault();
 
         if (this.state.currentFocus < (this.suggestionList.length - 1) || this.state.currentFocus == -1) {
@@ -66,7 +76,7 @@ export class HaystackUI extends React.Component {
         }
       }
       else if (e.keyCode === 38) {
-        //Up pressed
+        // Up pressed
         e.preventDefault();
 
         if ((this.state.currentFocus) > 0) {
@@ -92,13 +102,13 @@ export class HaystackUI extends React.Component {
           }
         }
       }
-      this.setState({ currentFocus: newFocus });
+      this.setState({ currentFocus: newFocus, prediction: null });
     }
   }
 
   handleKeyUp(e) {
     if (e.target.value) {
-      if (e.keyCode !== 38 && e.keyCode !== 40) {
+      if (e.keyCode !== 38 && e.keyCode !== 40 && e.keyCode !== 9) {
         this.setState({
           userQuery: e.target.value,
           showSuggestions: true,
@@ -153,17 +163,35 @@ export class HaystackUI extends React.Component {
   }
 
   autocomplete(text) {
-    const predictor = new Haystack({
-      caseSensitive: true,
-      flexibility: 0
-    });
-    return predictor.search(text, this.settings.source, 1);
+    const pool = this.settings.source;
+
+    // For pool as an array:
+    if (typeof pool === 'object' && pool.constructor === Array) {
+      for (let i=0; i<pool.length; i++) {
+        const word = this.settings.caseSensitive ? pool[i] : pool[i].toLowerCase();
+        if (word.startsWith(text)) {
+          return word;
+        }
+      }
+    }
+
+    // For pool as an object
+    else if (typeof pool === 'object' && pool.constructor === Object) {
+      for (let key in pool) {
+        const word = this.settings.caseSensitive ? pool[key] : pool[key].toLowerCase();
+        if (word.startsWith(text)) {
+          return word;
+        }
+      }
+    }
+
+    return null;
   }
 
   suggestionClick(e) {
     const text = e.target.innerText;
     document.getElementById('searchBar').value = text;
-    this.setState({ userQuery: text, showSuggestions: false, showClear: true });
+    this.setState({ userQuery: text, showSuggestions: false, prediction: null, showClear: true });
     this.submitSearch();
   }
 
@@ -178,7 +206,7 @@ export class HaystackUI extends React.Component {
 
   clear() {
     document.getElementById('searchBar').value = "";
-    this.setState({ userQuery: "", showSuggestions: false, showClear: false });
+    this.setState({ userQuery: "", showSuggestions: false, prediction: null, showClear: false });
     this.suggestionList = null;
   }
 
@@ -186,9 +214,9 @@ export class HaystackUI extends React.Component {
     return (
       <div id="Haystack-UI" className={'theme-' + this.settings.theme.toLowerCase()} onFocus={this.handleKeyUp} onBlur={this.handleBlur}>
         <form method="GET" action={this.settings.submitLocation} onSubmit={this.submitSearch}>
-          <input id="searchBar" type="search" autoComplete="off" name="q"
+          <input id="searchBar" type="search" autoComplete="off" name="query"
             placeholder={this.settings.placeholder}
-            className={this.state.showSuggestions ? "expanded" : ""}
+            className={(this.state.showSuggestions && this.settings.showSuggestions) ? "expanded" : ""}
             onKeyDown={this.handleKeyDown}
             onKeyUp={this.handleKeyUp}
           />
