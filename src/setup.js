@@ -23,6 +23,7 @@
       theme: 'light',
       placeholder: 'Search',
       showSuggestions: true,
+      inlineSuggestions: false,
       suggestionLimit: 4,
       submitLocation: '#',
       source: null,

@@ -9,6 +9,7 @@ export class HaystackUI extends React.Component {
     this.state = {
       userQuery: "",
       showSuggestions: false,
+      prediction: null,
       showClear: false,
       currentFocus: -1
     };
@@ -18,6 +19,7 @@ export class HaystackUI extends React.Component {
     this.submitSearch = this.submitSearch.bind(this);
     this.clear = this.clear.bind(this);
     this.getSuggestions = this.getSuggestions.bind(this);
+    this.autocomplete = this.autocomplete.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
     this.suggestionClick = this.suggestionClick.bind(this);
     this.settings = this.props.settings;
@@ -97,10 +99,22 @@ export class HaystackUI extends React.Component {
   handleKeyUp(e) {
     if (e.target.value) {
       if (e.keyCode !== 38 && e.keyCode !== 40) {
-        this.setState({ userQuery: e.target.value, showSuggestions: true, showClear: true, currentFocus: -1 });
+        this.setState({
+          userQuery: e.target.value,
+          showSuggestions: true,
+          prediction: this.autocomplete(e.target.value),
+          showClear: true,
+          currentFocus: -1
+        });
       }
     } else {
-      this.setState({ userQuery: "", showSuggestions: false, currentFocus: -1, showClear: false });
+      this.setState({
+        userQuery: "",
+        showSuggestions: false,
+        prediction: null,
+        currentFocus: -1,
+        showClear: false
+      });
       this.suggestionList = null;
     }
   }
@@ -110,7 +124,7 @@ export class HaystackUI extends React.Component {
     /* suggestionClick may potentially be running, wait 100ms for finish */
     setTimeout( () => {
       if ( !currentTarget.contains(document.activeElement) ) {
-        this.setState({ showSuggestions: false });
+        this.setState({ showSuggestions: false, prediction: null });
       }
     }, 100);
 
@@ -136,6 +150,14 @@ export class HaystackUI extends React.Component {
     else {
       return <h4>No Results</h4>;
     }
+  }
+
+  autocomplete(text) {
+    const predictor = new Haystack({
+      caseSensitive: true,
+      flexibility: 0
+    });
+    return predictor.search(text, this.settings.source, 1);
   }
 
   suggestionClick(e) {
@@ -170,6 +192,9 @@ export class HaystackUI extends React.Component {
             onKeyDown={this.handleKeyDown}
             onKeyUp={this.handleKeyUp}
           />
+          { this.settings.inlineSuggestions &&
+            <label for="searchBar" id="prediction-text">{this.state.prediction}</label>
+          }
         </form>
         { this.state.showClear &&
           <span id="clear" onClick={this.clear}>{String.fromCharCode(215)}</span>
