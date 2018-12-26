@@ -19,9 +19,9 @@
   border: none;
   border-radius: 5px;
   background-image: url("./magnifyingglass.svg");
-  background-position: 6px;
+  background-position: 7px;
   background-repeat: no-repeat;
-  background-size: 19px;
+  background-size: 17px;
   -webkit-appearance: none;
   -webkit-transition: 300ms;
   -moz-transition: 300ms;
@@ -49,8 +49,10 @@
 }
 #Haystack-UI #prediction-text {
   position: absolute;
-  top: -1px;
+  display: flex;
+  top: 0px;
   left: 0px;
+  align-items: center;
   text-align: left;
   font-weight: 400;
   width: 100%;
