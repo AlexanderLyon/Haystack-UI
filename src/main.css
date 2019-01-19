@@ -139,7 +139,7 @@
 }
 #Haystack-UI.theme-light #suggestion-list li {
   color: #757576;
-  border-top: 1px solid #dadada;
+  border-top: 1px solid #eaeaea;
 }
 #Haystack-UI.theme-light #suggestion-list li:hover,
 #Haystack-UI.theme-light #suggestion-list li.active {
@@ -152,7 +152,7 @@
 /***** Dark *****/
 #Haystack-UI.theme-dark input[type="search"],
 #Haystack-UI.theme-dark #suggestions {
-  background-color: rgba(165, 165, 165, 0.5);
+  background-color: rgba(165, 165, 165, 0.45);
 }
 #Haystack-UI.theme-dark #clear {
   color: grey;
@@ -162,7 +162,7 @@
 }
 #Haystack-UI.theme-dark #suggestion-list li {
   color: grey;
-  border-top: 1px solid #b5b5b5;
+  border-top: 1px solid #c1c1c1;
 }
 #Haystack-UI.theme-dark #suggestion-list li:hover,
 #Haystack-UI.theme-dark #suggestion-list li.active {

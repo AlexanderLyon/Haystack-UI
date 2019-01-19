@@ -3,6 +3,10 @@
 ## Overview:
 Haystack UI is a React component that allows you to easily insert a search field into your website. It's based on the functionality of fuzzy-search plugin [Haystack](https://github.com/AlexanderLyon/Haystack "Haystack"), but with a built-in interface.
 
+<p align="center">
+  <img src="assets/Sample.jpg" alt="Haystack UI Themes" width="500" height="auto"/>
+</p>
+
 ## Instructions:
 
 #### Include Haystack UI bundle
@@ -21,31 +25,20 @@ const haystackApp = new HaystackUI( options ).init();
 ```
 
 ## Options:
-
-`theme` *string* -- Color scheme ("light", "dark", or "ghost")
-
-`placeholder` *string* -- Input placeholder text
-
-`showSuggestions` *boolean* -- Whether or not to show suggestion drop-down
-
-`inlineSuggestions` *boolean* -- Displays an autocompleted suggestion on the same line as input
-
-`suggestionLimit` *number* -- Maximum number of suggestions shown in drop-down
-
-`submitLocation` *string* -- URL of the file that will process GET method. Your search string will be received as "query"
-
-`source` *array* -- Pool of data to pull suggestions from
-
-`caseSensitive` *boolean* -- Whether or not search is case sensitive
-
-`flexibility` *number* -- "Fuzziness" of suggestions. The lower the number, the more strict your suggestions will be
-
-`stemming` *boolean* -- Experimental, only removes "s" from end of words for now
-
-`exclusions` *string* -- Add a string or regex to ignore in query
-
-`ignoreStopWords` *boolean* -- Ignore common stop words such as the, a, in, etc.
-
+| Option      | Default     | Description |
+| ----------- | ----------- | ----------- |
+| `theme` (*string*) | light | Color scheme ("light", "dark", or "ghost") |
+| `placeholder` (*string*) | "Search" | Input placeholder text |
+| `showSuggestions` (*boolean*) | true | Whether or not to show suggestion drop-down |
+| `inlineSuggestions` (*boolean*) | false | Displays an autocompleted suggestion on the same line as input |
+| `suggestionLimit` (*number*) | 4 | Maximum number of suggestions shown in drop-down |
+| `submitLocation` (*string*) | "#" | URL of the file that will process GET method. Your search string will be received as "query" |
+| `source` (*array*) | null | Pool of data to pull suggestions from |
+| `caseSensitive` (*boolean*) | false | Whether or not search is case sensitive |
+| `flexibility` (*number*) | 1 | "Fuzziness" of suggestions. The lower the number, the more strict your suggestions will be |
+| `stemming` (*boolean*) | false | Reduces tokens in a query to their base words |
+| `exclusions` (*string*) | null | Add a string or regex to ignore in query |
+| `ignoreStopWords` *boolean* | false | Ignore common stop words such as the, a, in, etc. |
 
 
 ## License
