@@ -3,15 +3,23 @@
   "version": "1.0.0",
   "description": "Fuzzy search interface",
   "main": "./dist/HaystackUI.bundle.js",
+  "publishConfig": {
+    "access": "restricted"
+  },
   "scripts": {
     "build": "webpack --mode production",
-    "dev": "webpack --mode development",
-    "start": "webpack-dev-server --hot"
+    "dev": "webpack --mode development"
   },
   "author": "Alexander Lyon",
   "license": "MIT",
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.11",
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5",
     "react-transition-group": "^1.2.1",
     "style-loader": "^0.20.3",
     "svg-url-loader": "^2.3.2",
@@ -19,13 +27,6 @@
     "webpack-cli": "^2.0.12"
   },
   "dependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.4",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
-    "haystack-search": "^4.4.3",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "webpack-dev-server": "^3.1.14"
+    "haystack-search": "^4.4.3"
   }
 }

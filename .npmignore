@@ -1,0 +1,7 @@
+assets/
+Demo/
+
+.gitignore
+
+# OS generated files
+.DS_Store

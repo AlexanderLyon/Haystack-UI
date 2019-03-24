@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Haystack from 'haystack-search';
+import './main.css';
 import { Suggestions } from './Suggestions';
 
-export class HaystackUI extends React.Component {
+export default class HaystackUI extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,13 +23,12 @@ export class HaystackUI extends React.Component {
     this.autocomplete = this.autocomplete.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
     this.suggestionClick = this.suggestionClick.bind(this);
-    this.settings = this.props.settings;
     this.haystack = new Haystack({
-      caseSensitive: this.settings.caseSensitive,
-      flexibility: this.settings.flexibility,
-      stemming: this.settings.stemming,
-      exclusions: this.settings.exclusions,
-      ignoreStopWords: this.settings.ignoreStopWords
+      caseSensitive: this.props.caseSensitive,
+      flexibility: this.props.flexibility,
+      stemming: this.props.stemming,
+      exclusions: this.props.exclusions,
+      ignoreStopWords: this.props.ignoreStopWords
     });
     let suggestionList;
   }
@@ -36,7 +36,7 @@ export class HaystackUI extends React.Component {
   handleKeyDown(e) {
     // Listens mainly for arrow key presses
 
-    if (this.settings.inlineSuggestions && this.state.prediction) {
+    if (this.props.inlineSuggestions && this.state.prediction) {
       // Tab pressed
       if (e.keyCode === 9) {
         e.preventDefault();
@@ -144,8 +144,8 @@ export class HaystackUI extends React.Component {
     // Search for similar words using Haystack
     let results;
 
-    if (this.settings.source) {
-      results = this.haystack.search(this.state.userQuery, this.settings.source, this.settings.suggestionLimit);
+    if (this.props.source) {
+      results = this.haystack.search(this.state.userQuery, this.props.source, this.props.suggestionLimit);
     }
 
     if (results) {
@@ -163,12 +163,12 @@ export class HaystackUI extends React.Component {
   }
 
   autocomplete(text) {
-    const pool = this.settings.source;
+    const pool = this.props.source;
 
     // For pool as an array:
     if (typeof pool === 'object' && pool.constructor === Array) {
       for (let i=0; i<pool.length; i++) {
-        const word = this.settings.caseSensitive ? pool[i] : pool[i].toLowerCase();
+        const word = this.props.caseSensitive ? pool[i] : pool[i].toLowerCase();
         if (word.startsWith(text)) {
           return word;
         }
@@ -178,7 +178,7 @@ export class HaystackUI extends React.Component {
     // For pool as an object
     else if (typeof pool === 'object' && pool.constructor === Object) {
       for (let key in pool) {
-        const word = this.settings.caseSensitive ? pool[key] : pool[key].toLowerCase();
+        const word = this.props.caseSensitive ? pool[key] : pool[key].toLowerCase();
         if (word.startsWith(text)) {
           return word;
         }
@@ -212,25 +212,40 @@ export class HaystackUI extends React.Component {
 
   render() {
     return (
-      <div id="Haystack-UI" className={'theme-' + this.settings.theme.toLowerCase()} onFocus={this.handleKeyUp} onBlur={this.handleBlur}>
-        <form method="GET" action={this.settings.submitLocation} onSubmit={this.submitSearch}>
+      <div id="Haystack-UI" className={'theme-' + this.props.theme.toLowerCase()} onFocus={this.handleKeyUp} onBlur={this.handleBlur}>
+        <form method="GET" action={this.props.submitLocation} onSubmit={this.submitSearch}>
           <input id="searchBar" type="search" autoComplete="off" name="query"
-            placeholder={this.settings.placeholder}
-            className={(this.state.showSuggestions && this.settings.showSuggestions) ? "expanded" : ""}
+            placeholder={this.props.placeholder}
+            className={(this.state.showSuggestions && this.props.showSuggestions) ? "expanded" : ""}
             onKeyDown={this.handleKeyDown}
             onKeyUp={this.handleKeyUp}
           />
-          { this.settings.inlineSuggestions &&
+          { this.props.inlineSuggestions &&
             <label for="searchBar" id="prediction-text">{this.state.prediction}</label>
           }
         </form>
         { this.state.showClear &&
           <span id="clear" onClick={this.clear}>{String.fromCharCode(215)}</span>
         }
-        { this.settings.showSuggestions &&
+        { this.props.showSuggestions &&
           <Suggestions show={this.state.showSuggestions} getSuggestions={this.getSuggestions()}/>
         }
       </div>
     );
   }
+}
+
+HaystackUI.defaultProps = {
+  theme: 'light',
+  placeholder: 'Search',
+  showSuggestions: true,
+  inlineSuggestions: false,
+  suggestionLimit: 4,
+  submitLocation: '#',
+  source: null,
+  caseSensitive: false,
+  flexibility: 1,
+  stemming: false,
+  exclusions: null,
+  ignoreStopWords: false
 }
