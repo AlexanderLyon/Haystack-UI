@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "Fuzzy search interface",
   "main": "./dist/HaystackUI.bundle.js",
-  "publishConfig": {
-    "access": "restricted"
-  },
   "scripts": {
     "build": "webpack --mode production",
     "dev": "webpack --mode development"

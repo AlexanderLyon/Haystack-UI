@@ -1,30 +1,31 @@
 # Haystack UI
 
-## Overview:
+## Overview
 Haystack UI is a React component that allows you to easily insert a search field into your website. It's based on the functionality of fuzzy-search plugin [Haystack](https://github.com/AlexanderLyon/Haystack "Haystack"), but with a built-in interface.
 
 <p align="center">
   <img src="assets/Sample.jpg" alt="Haystack UI Themes" width="500" height="auto"/>
 </p>
 
-## Instructions:
-
-#### Include Haystack UI bundle
-```html
-<script src="HaystackUI.bundle.js" type="text/javascript"></script>
+## Installation
+Using npm:
+```shell
+npm i haystack-ui
 ```
 
-#### Add the following element wherever you'd like to insert the search field
-```html
-<span id="HaystackUIContainer"></span>
-```
-
-#### Initialize Haystack UI
+Import Haystack UI component:
 ```javascript
-const haystackApp = new HaystackUI( options ).init();
+import HaystackUI from 'haystack-ui';
 ```
 
-## Options:
+Render component:
+```html
+<HaystackUI/>
+```
+
+## Options
+Passed to component as props
+
 | Option      | Default     | Description |
 | ----------- | ----------- | ----------- |
 | `theme` (*string*) | light | Color scheme ("light", "dark", or "ghost") |
