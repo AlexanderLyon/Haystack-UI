@@ -1,5 +1,5 @@
 import React from 'react';
-import Haystack from 'haystack-search';
+import { Haystack } from 'haystack-search';
 import './main.css';
 import { Suggestions } from './Suggestions';
 

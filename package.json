@@ -24,6 +24,6 @@
     "webpack-cli": "^2.0.12"
   },
   "dependencies": {
-    "haystack-search": "^4.4.3"
+    "haystack-search": "^5.0.0"
   }
 }
