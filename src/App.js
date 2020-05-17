@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Haystack from 'haystack-search';
 import './main.css';
 import { Suggestions } from './Suggestions';
