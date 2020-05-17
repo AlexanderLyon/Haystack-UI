@@ -4,7 +4,7 @@ import Haystack from 'haystack-search';
 import './main.css';
 import { Suggestions } from './Suggestions';
 
-export default class HaystackUI extends React.Component {
+export class HaystackUI extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

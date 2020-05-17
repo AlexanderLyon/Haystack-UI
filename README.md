@@ -15,7 +15,7 @@ npm i haystack-ui
 
 Import Haystack UI component:
 ```javascript
-import HaystackUI from 'haystack-ui';
+import { HaystackUI } from 'haystack-ui';
 ```
 
 Render component:
